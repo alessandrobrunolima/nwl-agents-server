@@ -11,7 +11,11 @@ await seed(db, schema ).refine((f) => {
             columns: {
                 name: f.companyName(),
                 description: f.loremIpsum(),
+                createdAt: f.date({ minDate: new Date(2025, 0, 1), maxDate: new Date(2025, 6, 1) })
             }
+        },
+        questions: {
+            count: 20
         }
     }
 });
