@@ -21,6 +21,6 @@ app.get('/health', () => {
   return { status: 'ok' };
 });
 
-// app.register(getRoomsRoute);
+app.register(getRoomsRoute);
 
 app.listen({ port: env.PORT });
