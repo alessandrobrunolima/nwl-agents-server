@@ -47,3 +47,13 @@ Content-Type: application/json
   "answer": "Brasília"
 }
 
+###
+# Create question
+POST {{base_url}}/rooms/6e6a9938-5290-45c7-b0b9-96a83c86a641/questions
+Accept: application/json
+Content-Type: application/json
+
+{
+  "question": "O que é React?"
+}
+

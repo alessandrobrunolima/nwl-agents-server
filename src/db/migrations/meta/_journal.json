@@ -15,6 +15,13 @@
       "when": 1752062154151,
       "tag": "0001_rare_madame_web",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752182642190,
+      "tag": "0002_broken_wild_child",
+      "breakpoints": true
     }
   ]
 }
