@@ -33,15 +33,15 @@ export const uploadAudioRoute: FastifyPluginCallbackZod = (app) => {
     }).returning();
 
     const chunk = result[0];
-    if(!chunk) {
+    if (!chunk) {
       throw new Error("Erro ao salvar chunk de áudio.");
     }
 
-    return reply.status(201).send({chunkId: chunk.id});
+    return reply.status(201).send({ chunkId: chunk.id });
 
     // 1. Transcrever o audio
     // 2. Gerar o vertorn semântico / embeddings
     // 3. Armazenar os vetores no banco de dados
-    
+
   });
 };

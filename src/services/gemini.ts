@@ -25,7 +25,7 @@ export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
     ]
   });
 
-  if(!response.text) {
+  if (!response.text) {
     throw new Error("Não foi possível transcrever o áudio.");
   }
 
@@ -35,13 +35,13 @@ export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
 export async function generateEmbedding(text: string) {
   const response = await genai.models.embedContent({
     model: 'text-embedding-004',
-    contents: [{text}],
+    contents: [{ text }],
     config: {
       taskType: 'RETRIEVAL_DOCUMENT' // 
     }
   });
 
-  if(!response.embeddings?.[0].values) {
+  if (!response.embeddings?.[0].values) {
     throw new Error("Não foi possível gerar os embeddings.");
   }
 
@@ -74,12 +74,12 @@ export async function generateAnswer(question: string, transcrptions: string[]) 
     model,
     contents: [
       {
-        text:promptGenerateAnswer
+        text: promptGenerateAnswer
       }
     ]
   });
 
-  if(!response.text) {
+  if (!response.text) {
     throw new Error("Falha ao gerar resposta pelo Gemini.");
   }
 

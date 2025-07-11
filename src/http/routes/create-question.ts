@@ -40,20 +40,20 @@ export const createQuestionRoute: FastifyPluginCallbackZod = (app) => {
       .limit(3);
 
 
-      let answer: string | null = null;
+    let answer: string | null = null;
 
-      if(chunks.length > 0) {
+    if (chunks.length > 0) {
 
-        const transcrptions = chunks.map(chunk => chunk.transcription);
+      const transcrptions = chunks.map(chunk => chunk.transcription);
 
-        answer = await generateAnswer(question, transcrptions);
-      }
+      answer = await generateAnswer(question, transcrptions);
+    }
 
 
     const result = await db.insert(schema.questions).values({ roomId, question, answer }).returning();
     const insertedQuestion = result[0];
 
-    if(!insertedQuestion) {
+    if (!insertedQuestion) {
       throw new Error("Failed to create question.");
     }
 
