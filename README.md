@@ -1,80 +1,65 @@
 # NLW Agents
 
-Projeto desenvolvido durante o evento **Next Level Week (NLW)** da **Rocketseat**, focado na criação de uma API para gerenciamento de agentes inteligentes.
+Projeto desenvolvido durante o evento **Next Level Week (NLW)** da **Rocketseat**. Uma API inteligente para gerenciamento de salas e perguntas utilizando IA para transcrição de áudio e geração de respostas.
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Tecnologias
 
-### Backend
 - **Node.js** - Runtime JavaScript
-- **TypeScript** - Linguagem de programação
-- **Fastify** - Framework web rápido e eficiente
-- **Drizzle ORM** - ORM type-safe para TypeScript
-- **PostgreSQL** - Banco de dados relacional
-- **PGVector** - Extensão para vetorização no PostgreSQL
-- **Zod** - Biblioteca para validação de schemas
-
-### Ferramentas de Desenvolvimento
+- **TypeScript** - Linguagem tipada 
+- **Fastify** - Framework web rápido
+- **Drizzle ORM** - ORM type-safe
+- **PostgreSQL + PGVector** - Banco com suporte a embeddings
+- **Google Gemini AI** - IA para transcrição e respostas
+- **Zod** - Validação de schemas
 - **Docker** - Containerização
-- **Biome** - Linter e formatter
-- **Drizzle Kit** - CLI para migrações do banco
-- **Ultracite** - Configuração de linting
 
-## 📁 Estrutura do Projeto
+## 🛠️ Padrões de Projeto
 
-```
-src/
-├── db/
-│   ├── schema/         # Definição dos schemas do banco
-│   ├── migrations/     # Migrações do banco de dados
-│   └── seed.ts         # Dados iniciais
-├── http/
-│   └── routes/         # Rotas da API
-├── env.ts              # Configuração de variáveis de ambiente
-└── server.ts           # Servidor principal
-```
+- **Arquitetura em Camadas** - Separação entre rotas, schemas e serviços
+- **Type Safety** - TypeScript + Zod para validação completa
+- **Configuração Centralizada** - Variáveis de ambiente em arquivo dedicado
+- **Migrations** - Controle de versão do banco com Drizzle Kit
+- **Containerização** - Docker para ambiente consistente
 
-## 🔧 Pré-requisitos
+## ⚙️ Configuração
 
-- Node.js 18+ 
+### Pré-requisitos
+- Node.js 18+
 - Docker e Docker Compose
-- PostgreSQL (via Docker)
 
-## ⚙️ Instalação e Configuração
+### Instalação
 
-### 1. Clone o repositório
+1. **Clone e instale dependências**
 ```bash
-git clone <url-do-repositorio>
+git clone <repository-url>
 cd server
-```
-
-### 2. Instale as dependências
-```bash
 npm install
 ```
 
-### 3. Configure as variáveis de ambiente
-Crie um arquivo `.env` na raiz do projeto:
+2. **Configure variáveis de ambiente**
+Crie um arquivo `.env` na raiz:
 ```env
 PORT=3333
 DATABASE_URL=postgresql://docker:docker@localhost:5434/nwl-agents
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-### 4. Inicie o banco de dados
+3. **Inicie o banco de dados**
 ```bash
 docker compose up -d
 ```
 
-### 5. Execute as migrações
+4. **Execute as migrações**
 ```bash
-npx drizzle-kit migrate
+npm run db:migrate
 ```
 
-### 6. Execute o seed (opcional)
+5. **Execute o seed (opcional)**
 ```bash
 npm run db:seed
 ```
 
-## 🚀 Como Executar
+## 🚀 Execução
 
 ### Desenvolvimento
 ```bash
@@ -88,51 +73,32 @@ npm start
 
 A API estará disponível em `http://localhost:3333`
 
-## 📋 Comandos Úteis
+## 📋 Scripts Úteis
 
-### Docker
 ```bash
-# Iniciar containers
-docker compose up -d
+# Desenvolvimento
+npm run dev
 
-# Parar containers
-docker compose stop
-
-# Ver logs
-docker logs <container-id>
-```
-
-### Banco de Dados
-```bash
 # Gerar migration
-npx drizzle-kit generate
+npm run db:generate
 
 # Executar migrations
-npx drizzle-kit migrate
+npm run db:migrate
 
-# Visualizar banco pelo navegador
-npx drizzle-kit studio
+# Visualizar banco
+npm run db:studio
+
+# Seed do banco
+npm run db:seed
 ```
 
-## 🛠️ Padrões de Projeto
+## 🔧 Funcionalidades
 
-- **Arquitetura em Camadas**: Separação clara entre rotas, schema e configuração
-- **Type Safety**: Uso extensivo do TypeScript com Zod para validação
-- **Configuração Centralizada**: Variáveis de ambiente centralizadas em `env.ts`
-- **Migrations**: Controle de versão do banco de dados com Drizzle Kit
-- **Containerização**: Uso do Docker para ambiente consistente
-
-## 📡 Endpoints
-
-### Health Check
-```
-GET /health
-```
-
-### Rooms
-```
-GET /rooms
-```
+- **Gerenciamento de Salas** - Criar e listar salas
+- **Upload de Áudio** - Envio e transcrição automática
+- **Perguntas Inteligentes** - Sistema de Q&A com IA
+- **Busca Semântica** - Embeddings para busca contextual
+- **API RESTful** - Endpoints organizados e documentados
 
 ---
 
